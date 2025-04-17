@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Summit - Discussions{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Discussions</h1>
+    <a href="/new" class="btn btn-primary">Start New Discussion</a>
+</div>
+
+{% if discussions %}
+    <div class="list-group">
+        {% for discussion in discussions %}
+            <a href="{{ url_for('view_discussion', filename=discussion.filename) }}" 
+               class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ discussion.title }}</h5>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        No discussions yet. Start a new one by clicking the button above!
+    </div>
+{% endif %}
+{% endblock %} 

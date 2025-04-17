@@ -1,7 +1,8 @@
 from langchain_core.messages import SystemMessage, AIMessage, HumanMessage
 from colorama import Fore
+from pathlib import Path
 
-from summit.prompts import discussion_start, discussion_finish
+from prompts import discussion_start, discussion_finish
 from itertools import cycle
 
 
@@ -100,8 +101,14 @@ class Discussion:
             )
         print("Discussion finished.")
 
+        # Create discussions directory if it doesn't exist
+        discussions_dir = Path("discussions")
+        discussions_dir.mkdir(exist_ok=True)
+
         # Save to markdown file with good formatting
-        with open(f"{self.topic}.md", "w") as f:
+        filename = f"{self.topic.replace(' ', '_').lower()}.md"
+        filepath = discussions_dir / filename
+        with open(filepath, "w") as f:
             f.write(f"# Discussion on: {self.topic}\n\n")
             f.write("## Participants:\n")
             for name in self.participants.keys():
@@ -117,4 +124,4 @@ class Discussion:
             f.write("\n## Summary:\n")
             f.write(f"- {summary.content}\n")
 
-        print(f"Discussion saved to {self.topic}.md")
+        print(f"Discussion saved to {filepath}")
