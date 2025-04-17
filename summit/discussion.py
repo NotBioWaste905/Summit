@@ -9,7 +9,7 @@ class Discussion:
     """A class to facilitate and manage a structured multi-turn discussion among participants.
 
     Attributes:
-        participants (dict[str, dict]): A dictionary where keys are participant names and values are dictionaries 
+        participants (dict[str, dict]): A dictionary where keys are participant names and values are dictionaries
             containing participant-specific data, such as their model and status.
         topic (str): The topic of the discussion.
         global_context (list): A list to store global context information for the discussion.
@@ -21,10 +21,10 @@ class Discussion:
             Initializes the Discussion instance with participants, topic, and default settings.
 
         run():
-            Orchestrates the discussion among participants, handling message exchanges, participant responses, 
+            Orchestrates the discussion among participants, handling message exchanges, participant responses,
             and generating a summary if applicable. Saves the discussion to a markdown file upon completion.
     """
-    
+
     def __init__(self, participants: dict[str, dict], topic: str):
         # Initialize participants and topic
         self.participants = participants
